@@ -1,148 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Games</title>
+  <meta charset="UTF-8">
+  <title>azalea</title>
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-        .header {
-            padding: 20px;
-            background: #111;
-            border-bottom: 1px solid #333;
-            text-align: center;
-        }
+  <style>
+    /* RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, sans-serif;
+    }
 
-        .header h1 {
-            margin: 0 0 15px;
-            font-size: 2rem;
-        }
+    body.app-view {
+      min-height: 100vh;
+      background: #faf7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f1f2e;
+    }
 
-        .search-bar {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-            background: #2d2d3a;
-            color: white;
-            font-size: 1rem;
-        }
+    /* MAIN CARD */
+    .proxy-card {
+      width: 100%;
+      max-width: 640px;
+      padding: 56px 42px;
+      text-align: center;
+    }
 
-        .games-container {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            height: calc(100vh - 140px);
-            overflow-y: auto;
-        }
+    /* TITLE */
+    .proxy-card h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
 
-        .game-card {
-            background: #1a1a1a;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #333;
-            transition: transform .2s, background .2s, border .2s;
-            height: 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .proxy-card h1::after {
+      content: ".";
+      color: #a855f7;
+    }
 
-        .game-card:hover {
-            transform: translateY(-4px);
-            background: #222;
-            border-color: #ff4500;
-        }
+    /* SUBTITLE */
+    .subtitle {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
 
-        .game-icon {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ff8a00;
-        }
+    /* FORM */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        .game-title {
-            font-size: .9rem;
-            text-align: center;
-            max-height: 40px;
-            overflow: hidden;
-        }
-    </style>
+    label {
+      text-align: left;
+      font-size: 14px;
+      color: #6b7280;
+      margin-left: 6px;
+    }
+
+    select {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    /* SEARCH BAR */
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f3d9ff, #e9c6ff);
+      box-shadow: 0 16px 40px rgba(168, 85, 247, 0.28);
+    }
+
+    .input-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      padding: 14px 16px;
+      color: #1f1f2e;
+    }
+
+    .input-row input::placeholder {
+      color: #9ca3af;
+    }
+
+    .input-row button {
+      border: none;
+      cursor: pointer;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #c084fc, #a855f7);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input-row button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.35);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 32px;
+    }
+
+    .footer a {
+      font-size: 13px;
+      color: #a855f7;
+      text-decoration: none;
+      opacity: 0.7;
+    }
+
+    .footer a:hover {
+      opacity: 1;
+    }
+  </style>
 </head>
 
-<body>
+<body class="app-view">
 
-<div class="header">
-    <h1>Alex Games</h1>
-    <input type="text" id="searchInput" class="search-bar" placeholder="Search games...">
-</div>
+  <div class="proxy-card">
+    <h1>azalea proxy</h1>
+    <p class="subtitle">evade wifi restrictions for mad gooners</p>
 
-<div class="games-container" id="gamesContainer"></div>
+    <!-- PROXY FORM (UNCHANGED) -->
+    <form action="https://cdn.proxyium.com/proxyrequest.php" method="post" id="web_proxy_form" target="_self">
+      <input type="hidden" name="type" value="">
 
-<script>
-/* --- GAME LOGIC ONLY --- */
-const gamesContainer = document.getElementById("gamesContainer");
-const searchInput = document.getElementById("searchInput");
+      <label for="proxy_country">Server</label>
+      <select name="proxy_country" id="proxy_country">
+        <option value="pl" selected>Poland / France (Fast)</option>
+        <option value="us">United States</option>
+        <option value="sg">Singapore</option>
+      </select>
 
-const COVER_BASE = "https://cdn.jsdelivr.net/gh/gn-math/covers@main";
-const HTML_BASE  = "https://raw.githack.com/gn-math/html/main";
+      <div class="input-row">
+        <input
+          type="text"
+          name="url"
+          id="proxy_url"
+          placeholder="Enter URL or search query"
+          required
+        >
+        <button type="submit">Go →</button>
+      </div>
+    </form>
 
-let allGames = [];
+    <div class="footer">
+      <a href="https://bigrat.monster" target="_blank">
+        click for robux
+      </a>
+    </div>
+  </div>
 
-function renderGames(games) {
-    gamesContainer.innerHTML = "";
-    games.forEach(game => {
-        const card = document.createElement("div");
-        card.className = "game-card";
-        card.innerHTML = `
-            <img src="${game.cover}" class="game-icon">
-            <div class="game-title">${game.name}</div>
-        `;
-        card.onclick = () => window.open(game.url, "_blank");
-        gamesContainer.appendChild(card);
-    });
-}
-
-function fetchGames() {
-    fetch("https://cdn.jsdelivr.net/gh/gn-math/assets@main/zones.json")
-        .then(r => r.json())
-        .then(data => {
-            allGames = data
-                .filter(g => g.cover && g.url)
-                .map(g => ({
-                    name: g.name,
-                    cover: g.cover.replace("{COVER_URL}", COVER_BASE),
-                    url: g.url.replace("{HTML_URL}", HTML_BASE)
-                }));
-            renderGames(allGames);
-        });
-}
-
-searchInput.addEventListener("input", () => {
-    const q = searchInput.value.toLowerCase();
-    renderGames(allGames.filter(g => g.name.toLowerCase().includes(q)));
-});
-
-fetchGames();
-</script>
+  <!-- JS (UNCHANGED) -->
+  <script>
+    // Wait a bit before auto-submitting to avoid iframe/script blocking
+    setTimeout(() => {
+      const savedURL = localStorage.getItem('proxy_url');
+      if (savedURL) {
+        const input = document.getElementById('proxy_url');
+        const form = document.getElementById('web_proxy_form');
+        input.value = savedURL;
+        localStorage.removeItem('proxy_url');
+        form.submit();
+      }
+    }, 500);
+  </script>
 
 </body>
 </html>
